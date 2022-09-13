@@ -5,12 +5,12 @@ import { useContext } from "react";
 import { DepartmentContext } from "../../Context/DepartmentContext";
 import { departmentStore } from "../../Store/DepartmentStore";
 
-const DepartmentHod = ({ hodName, email, mobileno }) => {
+export const DepartmentHod = ({ title, hodName, email, mobileno }) => {
 
   return (
     <>
       <div className="departmentHod_section mt-5">
-        <h1>Head of the Department</h1>
+        <h1>{title}</h1>
         <div className="hod_line_section">
           <div className="hod_line"></div>
         </div>
@@ -25,7 +25,7 @@ const DepartmentHod = ({ hodName, email, mobileno }) => {
   );
 };
 
-const DepartmentQuickLinks = () => {
+export const DepartmentQuickLinks = () => {
   return (
     <>
       <div className="mission_vision_section mt-5">
@@ -49,7 +49,7 @@ const DepartmentQuickLinks = () => {
   );
 };
 
-const DepartmentMissionVision = ({ vision, mission }) => {
+export const DepartmentMissionVision = ({ vision, mission }) => {
   return (
     <>
       <div className="mission_vision_section mt-5 mb-5">
@@ -142,6 +142,7 @@ function Department() {
           <div className="col-lg-5 mt-4">
             <div className="col-lg-12">
               <DepartmentHod
+              title={"Head of the Department"}
                 email={currentDepartment.email}
                 hodName={currentDepartment.HodName}
                 mobileno={currentDepartment.phone}

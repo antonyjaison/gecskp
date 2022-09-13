@@ -19,6 +19,10 @@ import AffliationsAndApprovals from '../src/Pages/AffliationsAndApprovalsPage/Af
 import OrganisationalChartPage from "../src/Pages/OrganisationalChartPage/OrganisationalChartPage";
 import AdmissionPage from "./Pages/AdmissionPage/AdmissionPage";
 import { PdfContext } from "./Context/PdfContext";
+import Gallery from "./Pages/Gallery/Gallery";
+import AddImg from "./Components/AddImg/AddImg";
+import AdministrativePage from "./Pages/AdministrativePage/AdministrativePage";
+import DataCenterPage from "./Pages/DataCenterPage/DataCenterPage";
 
 
 function App() {
@@ -51,6 +55,9 @@ function App() {
               />
               <Route path="/courses" element={<CoursePage />} />
               <Route path="/admission" element={<AdmissionPage />} />
+              <Route path="/gallery" element={<Gallery/>} />
+              <Route path="/admin" element={<AdministrativePage/>} />
+              <Route path="/datacenter" element={<DataCenterPage/>} />
             </Routes>
           </BrowserRouter>
         </LanguageContext.Provider>

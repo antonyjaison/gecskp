@@ -17,11 +17,11 @@ function Footer() {
   const sreekrishnapuramLatLong = [10.9074, 76.4126];
   const Palakkad = [10.775, 76.651];
 
-  useEffect(() => {
-    axios.get(url).then((res) => {
-      setWeather(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(url).then((res) => {
+  //     setWeather(res.data);
+  //   });
+  // }, []);
 
   let farenheitKelvin = weather.main ? weather.main.temp : null;
 

@@ -46,7 +46,7 @@ function BodyNews() {
   return (
     <div className="body__news text-center">
       <div className="news_heading">
-        <h1>GECSKP News</h1>
+        <h1>KTU Notification</h1>
         <NewsLine />
       </div>
       <NewsSection />

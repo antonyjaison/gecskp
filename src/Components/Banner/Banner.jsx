@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../Banner/Banner.css";
 import Media from "react-media";
 import { LanguageContext } from "../../Context/LanguageContext";
@@ -8,60 +8,39 @@ import bgImg1 from "../Banner/background_image.png";
 import bgImg2 from "../Banner/Assosiation_Day.png";
 import bgImg3 from "../Banner/Daksha.png";
 import bgImg4 from "../Banner/IT.jpg";
+import { db } from "../../firebase";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import Line from "../Line/Line";
 
 function Banner(props) {
   const { language, setLanguage } = useContext(LanguageContext);
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    const q = query(collection(db, "news"), orderBy("created", "desc"));
+    onSnapshot(q, (snapshot) => {
+      setNews(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  }, []);
 
   return (
     <>
       <div className="carousel_wrapper">
         <div className="announcement_banner announcement_banner_blur">
           <div className="blur_headings">
-            <h1 className="mb-3">Announcements</h1>
+            <h1 className="mb-2">GECSKP News</h1>
           </div>
 
           <div className="announcement_scroll">
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum,
-              esse.
-            </p>
-            <div className="header_announcement_line"></div>
+            {news.map((news) => {
+              return (
+                <>
+                  <div key={news.id}>
+                    <p className="mt-2"><a href={news.pdfURL}>{language ? news.malayalamNews : news.englishNews}</a></p>
+                    <div className="header_announcement_line"></div>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
 
@@ -77,7 +56,8 @@ function Banner(props) {
             <div className="carousel_details">
               <div className="carousel_details_section text-start">
                 <h1 className="">
-                  Government Engineering College, Palakkad, <br /> Sreekrishnapuram
+                  Government Engineering College, Palakkad, <br />{" "}
+                  Sreekrishnapuram
                 </h1>
 
                 <h4>
