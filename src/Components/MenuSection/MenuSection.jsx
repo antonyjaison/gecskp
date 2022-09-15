@@ -16,7 +16,6 @@ function MenuSection() {
 
   const Navigate = useNavigate();
 
-
   return (
     <div className="menu_section">
       <div className="container">
@@ -125,6 +124,39 @@ function MenuSection() {
               >
                 {language ? "വിഭാഗങ്ങൾ" : "Departments"}
               </p>
+              <div className="nav_underline"></div>
+            </div>
+            <div className="menu_para_div">
+              <p
+                className={
+                  language
+                    ? "menu-para-link administration_links malayalam_link"
+                    : "menu-para-link administration_links"
+                }
+              >
+                {language ? "TEQIP" : "TEQIP"}
+              </p>
+              <ul className="administration_dropdown teqip_dropdown dropdown dropdown_animation">
+                <li>BoG</li>
+                <LinkLine />
+                <li>IDP & GDP</li>
+                <LinkLine />
+                <li>Academics</li>
+                <LinkLine />
+                <li>Finance</li>
+                <LinkLine />
+                <li>Procurement</li>
+                <LinkLine />
+                <li>Executive</li>
+                <LinkLine />
+                <li>IIIC</li>
+                <LinkLine />
+                <li>EAP</li>
+                <LinkLine />
+                <li>R&D</li>
+                <LinkLine />
+                <li>Guidelines For Funds</li>
+              </ul>
               <div className="nav_underline"></div>
             </div>
             <div className="menu_para_div">
