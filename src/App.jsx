@@ -23,6 +23,20 @@ import Gallery from "./Pages/Gallery/Gallery";
 import AddImg from "./Components/AddImg/AddImg";
 import AdministrativePage from "./Pages/AdministrativePage/AdministrativePage";
 import DataCenterPage from "./Pages/DataCenterPage/DataCenterPage";
+import LibraryPage from "./Pages/LibraryPage/LibraryPage";
+import CcfPage from "./Pages/CcfPage/CcfPage";
+import CeePage from "./Pages/CeePage/CeePage";
+import TbiPage from "./Pages/TbiPage/TbiPage";
+import SmartClass from "./Pages/SmartClass/SmartClass";
+import Edusat from "./Pages/Edusat/Edusat";
+import InsurancePage from "./Pages/InsurancePage/InsurancePage";
+import Hostel from "./Pages/Hostel/Hostel";
+import BusFacility from "./Pages/BusFacility/BusFacility";
+import AluminiPage from "./Pages/AluminiPage/AluminiPage";
+import NssPage from "./Pages/NssPage/NssPage";
+import IeeePage from "./Pages/IeeePage/IeeePage";
+import { Download } from "@mui/icons-material";
+import DownloadPage from "./Pages/DownloadPage/DownloadPage";
 
 
 function App() {
@@ -58,6 +72,19 @@ function App() {
               <Route path="/gallery" element={<Gallery/>} />
               <Route path="/admin" element={<AdministrativePage/>} />
               <Route path="/datacenter" element={<DataCenterPage/>} />
+              <Route path="/library" element={<LibraryPage/>} />
+              <Route path="/ccf" element={<CcfPage/>} />
+              <Route path="/cce" element={<CeePage/>} />
+              <Route path="/tbi" element={<TbiPage/>} />
+              <Route path="/smartclass" element={<SmartClass/>} />
+              <Route path="/edusat" element={<Edusat/>} />
+              <Route path="/insurance" element={<InsurancePage/>} />
+              <Route path="/hostel" element={<Hostel/>} />
+              <Route path="/bus" element={<BusFacility/>} />
+              <Route path="/alumini" element={<AluminiPage/>} />
+              <Route path="/nss" element={<NssPage/>} />
+              <Route path="/ieee" element={<IeeePage/>} />
+              <Route path="/downloads" element={<DownloadPage/>} />
             </Routes>
           </BrowserRouter>
         </LanguageContext.Provider>
