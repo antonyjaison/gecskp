@@ -1,6 +1,6 @@
-import userEvent from "@testing-library/user-event";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import "AdminLoginPage.css";
+import "../AdminLoginPage/AdminLoginPage.css";
+// import "AdminLoginPage.css";
 
 const AdminLoginPage = (props) => {
   const auth = props.auth;
@@ -15,12 +15,17 @@ const AdminLoginPage = (props) => {
   };
 
   return (
-    <div>
-      <input type="email" id="email" name="password" className="text" />
-      <input type="password" id="password" name="password" />
-      <button type="submit" onClick={handleSubmit}>
-        Login
-      </button>
+    <div className="admin_login_form">
+      <div className="admin_form_background">
+        <div className="admin_login_section">
+          <h1 className="text-start">Admin Login</h1>
+          <input type="email" id="email" name="password" className="text" placeholder="username"/>
+          <input type="password" id="password" name="password" placeholder="Password"/>
+          <button type="submit" onClick={handleSubmit}>
+            Login
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

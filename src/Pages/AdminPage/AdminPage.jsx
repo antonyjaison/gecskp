@@ -15,84 +15,13 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import AdminEventForm from "../../Components/AdminEventForm/AdminEventForm";
 import AdminData from "../../Components/AdminData/AdminData";
+import AdminCourse from "../../AdminComponents/AdminCourse/AdminCourse";
+import AdminAdmission from "../../AdminComponents/AdminAdmission/AdminAdmission";
 
 function AdminPage() {
   const [adminFormStatus, setAdminFormStatus] = useState("news");
 
   return (
-    // <div className="adminPage">
-    //   <div className="container">
-    //     <div className="row">
-    //       <div className="col-lg-6">
-    //         <div className="adminPage_btns">
-    //           <button
-    //             onClick={() => {
-    //               setAdminFormStatus("news");
-    //             }}
-    //             className={
-    //               adminFormStatus === "news" ? "active_admin_btn" : "admin_btn"
-    //             }
-    //           >
-    //             News
-    //           </button>
-    //           <button
-    //             onClick={() => {
-    //               setAdminFormStatus("announcements");
-    //             }}
-    //             className={
-    //               adminFormStatus === "announcements"
-    //                 ? "active_admin_btn"
-    //                 : "admin_btn"
-    //             }
-    //           >
-    //             Announcement
-    //           </button>
-    //           <button
-    //             onClick={() => {
-    //               setAdminFormStatus("event");
-    //             }}
-    //             className={
-    //               adminFormStatus === "event" ? "active_admin_btn" : "admin_btn"
-    //             }
-    //           >
-    //             Events
-    //           </button>
-    //           <button
-    //             onClick={() => {
-    //               setAdminFormStatus("faculty");
-    //             }}
-    //             className="admin_btn"
-    //           >
-    //             Faculty
-    //           </button>
-    //           <button
-    //             onClick={() => {
-    //               setAdminFormStatus("achivements");
-    //             }}
-    //             className="admin_btn"
-    //           >
-    //             Achivements
-    //           </button>
-    //         </div>
-    //         <div className="">
-    //           {adminFormStatus === "news" ? <AdminNewsForm /> : ""}
-    //           {adminFormStatus === "announcements" ? (
-    //             <AdminAnnouncementForm />
-    //           ) : (
-    //             ""
-    //           )}
-    //           {adminFormStatus === "event" ? <AdminEventForm /> : ""}
-    //         </div>
-    //       </div>
-
-    //       <div className="col-lg-6 admin_data_section">
-    //         {adminFormStatus === "news" ? <AdminData /> : ""}
-    //         {adminFormStatus === "announcements" ? <AdminData /> : ""}
-    //         {adminFormStatus === "event" ? <AdminData /> : ""}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <>
       <div className="admin_page_body">
         <div className="row">
@@ -103,15 +32,15 @@ function AdminPage() {
                   <AccordionItemButton>Academics</AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel className="admin_accor_para">
-                  <p>Courses</p>
-                  <p>Admission</p>
-                  <p>Rules & Regulation</p>
-                  <p>Syllabus</p>
-                  <p>AICTE Mandatory Disclosure</p>
-                  <p>Affilations & Approvals</p>
-                  <p>NIRF 2020 Application</p>
-                  <p>IQAC</p>
-                  <p>KTU Toppers</p>
+                  <p className={adminFormStatus === 'course' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("course")}>Courses</p>
+                  <p className={adminFormStatus === 'admission' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("admission")}>Admission</p>
+                  <p className={adminFormStatus === 'rules' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("rules")}>Rules & Regulation</p>
+                  <p className={adminFormStatus === 'syllabus' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("syllabus")}>Syllabus</p>
+                  <p className={adminFormStatus === 'aicte' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("aicte")}>AICTE Mandatory Disclosure</p>
+                  <p className={adminFormStatus === 'affliation' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("affliation")}>Affilations & Approvals</p>
+                  <p className={adminFormStatus === 'nirf' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("nirf")}>NIRF 2020 Application</p>
+                  <p className={adminFormStatus === 'iqac' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("iqac")}>IQAC</p>
+                  <p className={adminFormStatus === 'toppers' ? 'bold' : 'normal'} onClick={() => setAdminFormStatus("toppers")}>KTU Toppers</p>
                 </AccordionItemPanel>
               </AccordionItem>
               <AccordionItem>
@@ -134,6 +63,11 @@ function AdminPage() {
                 </AccordionItemPanel>
               </AccordionItem>
             </Accordion>
+          </div>
+          <div className="col-lg-9">
+            {adminFormStatus === 'course' && <AdminCourse/>}
+            {adminFormStatus === 'admission' && <AdminAdmission/>}
+            
           </div>
         </div>
       </div>
