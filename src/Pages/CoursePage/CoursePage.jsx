@@ -53,7 +53,7 @@ const CourseSection = ({ title, details }) => {
 function CoursePage() {
   return (
     <div>
-      <Header isDepartment={true}/>
+      <Header isDepartment={false}/>
       <CommonBanner title={"Courses"} />
       <CourseSection title={courses.ugtitle} details={courses.ug} />
       <CourseSection title={courses.pgtitle} details={courses.pg} />

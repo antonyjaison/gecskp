@@ -9,18 +9,41 @@ import bgImg2 from "../Banner/Assosiation_Day.png";
 import bgImg3 from "../Banner/Daksha.png";
 import bgImg4 from "../Banner/IT.jpg";
 import { db } from "../../firebase";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  QuerySnapshot,
+} from "firebase/firestore";
 import Line from "../Line/Line";
 
 function Banner(props) {
+  const [bannerImg, setBannerImg] = useState([]);
   const { language, setLanguage } = useContext(LanguageContext);
   const [news, setNews] = useState([]);
   useEffect(() => {
+    const img = query(
+      collection(db, "bannerImages"),
+      orderBy("created", "desc")
+    );
+    onSnapshot(img, (QuerySnapshot) => {
+      setBannerImg(
+        QuerySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
     const q = query(collection(db, "news"), orderBy("created", "desc"));
     onSnapshot(q, (snapshot) => {
       setNews(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   }, []);
+
+  console.log(bannerImg);
+  const sliceBannerImg = bannerImg.slice(0,7)
+
 
   return (
     <>
@@ -35,7 +58,11 @@ function Banner(props) {
               return (
                 <>
                   <div key={news.id}>
-                    <p className="mt-2"><a href={news.pdfURL}>{language ? news.malayalamNews : news.englishNews}</a></p>
+                    <p className="mt-2">
+                      <a href={news.pdfURL}>
+                        {language ? news.malayalamNews : news.englishNews}
+                      </a>
+                    </p>
                     <div className="header_announcement_line"></div>
                   </div>
                 </>
@@ -84,19 +111,20 @@ function Banner(props) {
             </div>
           </div>
 
-          <div className="carousel">
-            <img className="carousel_img" src={bgImg2} />
-            <div className="carousel_details_div">
-              <div className="carousel_headings">
-                <h2>Assosiation Day</h2>
-              </div>
-            </div>
-          </div>
-
-          <div className="carousel">
-            <img className="carousel_img" src={bgImg4} />
-            <div className="carousel_details_div"></div>
-          </div>
+          {sliceBannerImg.map((img) => {
+            return (
+              <>
+                <div className="carousel">
+                  <img className="carousel_img" src={img.data.imgUrl} />
+                  <div className="carousel_details_div">
+                    <div className="carousel_headings">
+                      <h2>{img.data.bannerHeading}</h2>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </Carousel>
       </div>
     </>

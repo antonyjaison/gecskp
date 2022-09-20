@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Line from "../Line/Line";
 import "../MenuSection/MenuSection.css";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { LanguageContext } from "../../Context/LanguageContext";
 
 export const LinkLine = () => {
@@ -15,6 +16,11 @@ function MenuSection() {
   const { language } = useContext(LanguageContext);
 
   const Navigate = useNavigate();
+
+  const MenuLink = {
+    textDecoration: "none",
+    color: "black",
+  };
 
   return (
     <div className="menu_section">
@@ -48,15 +54,21 @@ function MenuSection() {
               </p>
 
               <ul className="dropdown academics_dropdown dropdown_animation">
-                <li className={language ? "malayalam_link" : ""}>
-                  {language ? "കോഴ്‌സുകൾ" : "Courses"}
-                </li>
+                <Link style={MenuLink} to={"/courses"}>
+                  <li className={language ? "malayalam_link" : ""}>
+                    {language ? "കോഴ്‌സുകൾ" : "Courses"}
+                  </li>
+                </Link>
                 <LinkLine />
-                <li>{language ? "പ്രവേശനം" : "Admission"}</li>
+                <Link style={MenuLink} to={"/admission"}>
+                  <li>{language ? "പ്രവേശനം" : "Admission"}</li>
+                </Link>
                 <LinkLine />
                 <li>{language ? "നിയമാവലി" : "Rules & Regulations"}</li>
                 <LinkLine />
-                <li>{language ? "പാഠ്യപദ്ധതി" : "Syllabus"}</li>
+                <Link style={MenuLink} to={"/syllabus"}>
+                  <li>{language ? "പാഠ്യപദ്ധതി" : "Syllabus"}</li>
+                </Link>
                 <LinkLine />
                 <li>
                   {language
@@ -68,7 +80,11 @@ function MenuSection() {
                   {language ? "NIRF 2020 അപേക്ഷ" : "NIRF 2020 Application"}
                 </li>
                 <LinkLine />
-                <li>{language ? "അംഗീകാരങ്ങൾ" : "Affilations & Approvals"}</li>
+                <Link style={MenuLink} to={"/affliations"}>
+                  <li>
+                    {language ? "അംഗീകാരങ്ങൾ" : "Affilations & Approvals"}
+                  </li>
+                </Link>
                 <LinkLine />
                 <li>IQAC</li>
                 <LinkLine />
@@ -90,11 +106,16 @@ function MenuSection() {
               <ul className="administration_dropdown dropdown dropdown_animation">
                 <li>BoG</li>
                 <LinkLine />
-                <li>Organizational Chart</li>
+                <Link style={MenuLink} to={"/organisational_chart"}>
+                  <li>Organizational Chart</li>
+                </Link>
+
                 <LinkLine />
                 <li>Heads Of Departments</li>
                 <LinkLine />
-                <li>Administrative Offiice</li>
+                <Link style={MenuLink} to={"/admin"}>
+                  <li>Administrative Offiice</li>
+                </Link>
                 <LinkLine />
                 <li>Complaint Committee</li>
                 <LinkLine />
@@ -173,7 +194,9 @@ function MenuSection() {
                 <ul className="activity_links dropdown_animation">
                   <li>Swachh Bharat Internship</li>
                   <LinkLine />
-                  <li>Alumni</li>
+                  <Link style={MenuLink} to={"/alumini"}>
+                    <li>Alumni</li>
+                  </Link>
                   <LinkLine />
                   <li>PTA</li>
                   <LinkLine />
@@ -181,7 +204,9 @@ function MenuSection() {
                   <LinkLine />
                   <li>National Service Scheme</li>
                   <LinkLine />
-                  <li>IEEE</li>
+                  <Link style={MenuLink} to={"/ieee"}>
+                    <li>IEEE</li>
+                  </Link>
                   <LinkLine />
                   <li>TBI Report In VYAVASAYA KERALAM</li>
                 </ul>
@@ -215,27 +240,47 @@ function MenuSection() {
                 {language ? "സൗകര്യങ്ങൾ" : "Facilities"}
               </p>
               <ul className="facilities_dropdown dropdown dropdown_animation">
-                <li>Data Centre</li>
+                <Link style={MenuLink} to={"/datacenter"}>
+                  <li>Data Centre</li>
+                </Link>
                 <LinkLine />
-                <li>Central Library</li>
+                <Link style={MenuLink} to={"/library"}>
+                  <li>Central Library</li>
+                </Link>
                 <LinkLine />
-                <li>CCF</li>
+                <Link style={MenuLink} to={"/ccf"}>
+                  <li>CCF</li>
+                </Link>
                 <LinkLine />
-                <li>CCE</li>
+                <Link style={MenuLink} to={"/cce"}>
+                  <li>CCE</li>
+                </Link>
                 <LinkLine />
                 <li>IEDC</li>
                 <LinkLine />
-                <li>TBI</li>
+                <Link style={MenuLink} to={"/tbi"}>
+                  <li>TBI</li>
+                </Link>
                 <LinkLine />
-                <li>Transportation Facility</li>
+                <Link style={MenuLink} to={"/bus"}>
+                  <li>Transportation Facility</li>
+                </Link>
                 <LinkLine />
-                <li>Smart Class Room With WiFi</li>
+                <Link style={MenuLink} to={"/smartclass"}>
+                  <li>Smart Class Room With WiFi</li>
+                </Link>
                 <LinkLine />
-                <li>Edusat</li>
+                <Link style={MenuLink} to={"/edusat"}>
+                  <li>Edusat</li>
+                </Link>
                 <LinkLine />
-                <li>Hostel</li>
+                <Link style={MenuLink} to={"/hostel"}>
+                  <li>Hostel</li>
+                </Link>
                 <LinkLine />
-                <li>Insurance Coverage</li>
+                <Link style={MenuLink} to={"/insurance"}>
+                  <li>Insurance Coverage</li>
+                </Link>
               </ul>
               <div className="nav_underline"></div>
             </div>
@@ -250,6 +295,23 @@ function MenuSection() {
                 {language ? "കൂടുതൽ " : "More"}
                 <i className="fa-solid fa-chevron-right nav_link_icon"></i>
               </p>
+              <ul className="more_dropdown dropdown_animation">
+                <Link style={MenuLink} to={"/downloads"}>
+                  <li className="more_li">Downloads</li>
+                </Link>
+                <LinkLine />
+                <Link style={MenuLink} to={""}>
+                  <li className="more_li">News Letter</li>
+                </Link>
+                <LinkLine />
+                <Link style={MenuLink} to={""}>
+                  <li className="more_li">Public Outreach</li>
+                </Link>
+                <LinkLine />
+                <Link style={MenuLink} to={""}>
+                  <li className="more_li">Bhoomithra Sena</li>
+                </Link>
+              </ul>
               <div className="nav_underline"></div>
             </div>
           </div>

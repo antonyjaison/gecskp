@@ -177,6 +177,29 @@
 .teqip_dropdown{
   left: 53vw;
 }
+.more_dropdown{
+  width: fit-content;
+  padding-right: 10px;
+  position: absolute;
+  background-color: #f9f4ef;
+  list-style: none;
+  right: 7vw;
+display: none;
+  margin-top: -15px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.more_li{
+  padding: 5px 0 5px 0;
+  font-size: 18px;
+  line-height: 28px; 
+}
+.more_link:hover ~.more_dropdown{
+display: block;}
+.more_dropdown:hover{
+  display: block;
+}
+
+
 
 @media (max-width: 1400px){
   .malayalam_link {

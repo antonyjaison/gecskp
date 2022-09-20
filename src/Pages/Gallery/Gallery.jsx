@@ -109,9 +109,9 @@ const GallerySection = () => {
 function Gallery() {
   return (
     <div className="gallery">
-      {/* <Header isDepartment={false} /> */}
+      <Header isDepartment={false} />
       <GallerySection />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

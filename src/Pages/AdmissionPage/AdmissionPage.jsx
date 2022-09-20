@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../AdmissionPage/AdmissionPage.css";
 import { CommonBanner } from "../OrganisationalChartPage/OrganisationalChartPage";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import AdmissionHelp from "../../jsonFiles/admissionHelp.json";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot
+} from "firebase/firestore";
 import { db } from "../../firebase";
-import { collection,addDoc,Timestamp } from "firebase/firestore";
 
 const AdmissionLine = () => {
   return (
@@ -18,15 +23,31 @@ const AdmissionLine = () => {
 };
 
 const AdmissionHelpStaff = () => {
+  const [staffs, setStaffs] = useState([]);
+  useEffect(() => {
+    const q = query(collection(db, "admission"), orderBy("created", "desc"));
+    onSnapshot(q, (QuerySnapshot) => {
+      setStaffs(
+        QuerySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
+  // staffs.map(staff => {
+  //   console.log(staff.data.phone)
+  // })
+  //console.log(staffs);
   return (
     <>
-      {AdmissionHelp.map((staff) => (
-        <div className="admission_help_staff">
-          <p>{staff.query}</p>
-          <p>{staff.name}</p>
-          <p>{staff.position}</p>
-          <p>{staff.mail}</p>
-          <p>{staff.phone}</p>
+      {staffs.map((staff) => (
+        <div key={staff.id} className="admission_help_staff">
+          <p>{staff.data.Facultyquery}</p>
+          <p>{staff.data.name}</p>
+          <p>{staff.data.position}</p>
+          <p>{staff.data.mail}</p>
+          <p>{staff.data.phone}</p>
           <AdmissionLine />
         </div>
       ))}
@@ -88,7 +109,7 @@ const AddmisionBody = () => {
 const AdmissionPage = () => {
   return (
     <div>
-      <Header isDepartment={true} />
+      <Header isDepartment={false} />
       <CommonBanner title={"Admission 2022-23"} />
       <AddmisionBody />
       <Footer />

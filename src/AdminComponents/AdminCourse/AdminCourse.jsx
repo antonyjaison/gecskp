@@ -1,5 +1,6 @@
-import { height } from "@mui/system";
 import React from "react";
+import { db, storage } from "../../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export const AdminLine = () => {
   return (
@@ -16,9 +17,14 @@ export const AdminLine = () => {
 export const adminStyle = {
   backgroundColor:"#F2F2F2",
   padding:'20px',
-  margin:'0 10px'
 }
 function AdminCourse() {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+  };
+
   return (
     <div style={adminStyle} className="row">
       <div className="col-lg-6">
@@ -73,7 +79,7 @@ function AdminCourse() {
             placeholder="department description"
           ></textarea>
         </div>
-        <button>Add Course</button>
+        <button onClick={handleSubmit}>Add Course</button>
         <AdminLine/>
       </div>
 

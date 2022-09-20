@@ -18,7 +18,7 @@ function BodyNews() {
       setNews(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   }, []);
-  console.log(news);
+  // console.log(news);
 
   const NewsLine = () => {
     return <div className="news__line"></div>;
