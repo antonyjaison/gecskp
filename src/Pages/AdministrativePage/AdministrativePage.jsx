@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   DepartmentHod,
   DepartmentMissionVision,
@@ -8,8 +8,35 @@ import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import "../AdministrativePage/AdministrativePage.css";
 import { CommonBanner } from "../OrganisationalChartPage/OrganisationalChartPage";
+import { db } from "../../firebase";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  query,
+  orderBy,
+  onSnapshot,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 const AdminOfficeSection = () => {
+  const [admin, setAdmin] = useState([]);
+  useEffect(() => {
+    const q = query(
+      collection(db, "administration"),
+      orderBy("created", "desc")
+    );
+    onSnapshot(q, (QuerySnapshot) => {
+      setAdmin(
+        QuerySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
+  
   return (
     <>
       <div className="admin_office_section">
@@ -23,12 +50,7 @@ const AdminOfficeSection = () => {
               />
             </div>
             <div className="col-lg-4">
-              <DepartmentHod
-                title="Administrative Assistant"
-                hodName="Sri. V.M. Shine"
-                email="apbrshine@gmail.com"
-                mobileno="97455 54255"
-              />
+              {admin[0]?<DepartmentHod title="Administrative Assistant" hodName={admin[0].data.name} email={admin[0].data.email} mobileno={admin[0].data.mobile} />:<></>}
               <DepartmentQuickLinks />
             </div>
           </div>

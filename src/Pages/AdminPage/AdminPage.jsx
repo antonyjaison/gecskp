@@ -19,6 +19,8 @@ import AdminCourse from "../../AdminComponents/AdminCourse/AdminCourse";
 import AdminAdmission from "../../AdminComponents/AdminAdmission/AdminAdmission";
 import AdminBannerImages from "../../AdminComponents/AdminBannerImages";
 import AdminUpcommingEvents from "../../AdminComponents/AdminUpcommingEvents";
+import AdminAdministration from "../../AdminComponents/AdminAdministration";
+import AdminGallery from "../../AdminComponents/AdminGallery";
 
 function AdminPage() {
   const [adminFormStatus, setAdminFormStatus] = useState("banner");
@@ -43,6 +45,14 @@ function AdminPage() {
               onClick={() => setAdminFormStatus("upcomming")}
             >
               Upcomming Events
+            </p>
+            <p
+              className={
+                adminFormStatus === "gallery" ? "adminParaBold" : "normal"
+              }
+              onClick={() => setAdminFormStatus("gallery")}
+            >
+              Gallery
             </p>
             <Accordion allowZeroExpanded={true}>
               <AccordionItem>
@@ -122,7 +132,14 @@ function AdminPage() {
                   <p>BoG</p>
                   <p>Organizational Chart</p>
                   <p>Heads Of Departments</p>
-                  <p>Administrative Offiice</p>
+                  <p
+                    className={
+                      adminFormStatus === "admin" ? "bold" : "normal"
+                    }
+                    onClick={() => setAdminFormStatus("admin")}
+                  >
+                    Administrative Offiice
+                  </p>
                   <p>Complaint Committee</p>
                   <p>Continuing Education Cell</p>
                   <p>Tenders & Quotations</p>
@@ -138,9 +155,10 @@ function AdminPage() {
           <div className="col-lg-9">
             {adminFormStatus === "course" && <AdminCourse />}
             {adminFormStatus === "admission" && <AdminAdmission />}
-            {adminFormStatus === "banner" && <AdminBannerImages/>}
-            {adminFormStatus === "upcomming" && <AdminUpcommingEvents/>}
-
+            {adminFormStatus === "banner" && <AdminBannerImages />}
+            {adminFormStatus === "upcomming" && <AdminUpcommingEvents />}
+            {adminFormStatus === "admin" && <AdminAdministration/>}
+            {adminFormStatus === "gallery" && <AdminGallery/>}
 
 
           </div>

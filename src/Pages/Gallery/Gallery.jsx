@@ -1,10 +1,39 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import "../Gallery/Gallery.css";
 import imgs from "../../jsonFiles/imgs.json";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { db } from "../../firebase";
+import {
+    collection,
+    addDoc,
+    Timestamp,
+    query,
+    orderBy,
+    onSnapshot,
+    deleteDoc,
+    doc,
+  } from "firebase/firestore";
 
 const GallerySection = () => {
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const q = query(
+      collection(db, "Gallery"),
+      orderBy("created", "desc")
+    );
+    onSnapshot(q, (QuerySnapshot) => {
+      setData(
+        QuerySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
+
   let img2 =
     "https://images.pexels.com/photos/1433052/pexels-photo-1433052.jpeg?auto=compress&cs=tinysrgb&w=600";
   let img =
@@ -82,18 +111,18 @@ const GallerySection = () => {
               </div>
             </div>
 
-            {imgs.map((img) => {
+            {data.map((img) => {
               return (
                 <>
-                  <div className="col-lg-3 dynamic__imgs">
+                  <div key={img.id} className="col-lg-3 dynamic__imgs">
                     <img
                       style={{ marginTop: "30px" }}
                       className="gallery_img"
-                      src={img.img}
+                      src={img.data.imgUrl}
                       alt=""
                     />
                     <div className="gallery_heading">
-                      <h1>Daksha</h1>
+                      <h1>{img.data.heading}</h1>
                     </div>
                   </div>
                 </>

@@ -64,6 +64,8 @@ function AdminBannerImages() {
   const [bannerHeading, setBannerHeading] = useState("");
   const [error, setError] = useState("");
   const [bannerImg, setBannerImg] = useState("");
+  const [progresspercent,setProgresspercent] = useState(0)
+  console.log(progresspercent)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,7 +77,7 @@ function AdminBannerImages() {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        //setProgresspercent(progress);
+        setProgresspercent(progress);
       },
       (error) => {
         alert(error);
@@ -135,6 +137,12 @@ function AdminBannerImages() {
           >
             {error}
           </p>
+          <div style={{
+            height:'3px',
+            width:{progresspercent},
+            background:'red',
+            borderRadius:'10px'
+          }} className="progress_line"></div>
           <br />
           <button onClick={handleSubmit} style={adminBtnStyle}>
             Upload

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { DepartmentContext } from "../../Context/DepartmentContext";
 import { departmentStore } from "../../Store/DepartmentStore";
 
-export const DepartmentHod = ({ title, hodName, email, mobileno }) => {
+export const DepartmentHod = ({  title, hodName, email, mobileno }) => {
 
   return (
     <>
